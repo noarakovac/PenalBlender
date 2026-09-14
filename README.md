@@ -1,63 +1,103 @@
-# 3D Animacija penala
+# 3D Animacija: Penal (Blender)
 
-> Kratka animacija u Blenderu koja prikazuje 3D model lika kako izvodi nogometni penal (šutira loptu u gol).
+**Autor:** Noa Rakovac
 
-## 📌 Opis projekta
 
-Projekt je izrađen u sklopu kolegija 3D računalna grafika na Fakultetu primjenjene matematike i informatike Osijek. Cilj projekta bio je izraditi 3D model lika, pripremiti ga za animaciju (rigging) te izraditi kratku animiranu scenu u kojoj lik izvodi udarac na penal.
+## 🥅 Pregled
 
-Animacija prikazuje:
-- postavljanje lika i lopte na scenu,
-- zalet i udarac lika prema lopti,
-- putanju lopte prema golu.
+Ovaj repozitorij sadrži 3D animaciju izrađenu u **Blenderu**, u sklopu kolegija **3D računalna grafika**. Projekt prikazuje low-poly 3D lika u dresu hrvatske nogometne reprezentacije koji izvodi udarac na nogometni penal, a zatim slavi pogodak.
 
-## 🎯 Glavne funkcionalnosti / značajke
+Animacija (1920×1080, 24 fps, 210 sličica / 8.75 s, ukupno 210 keyframeova) montirana je kroz više kutova snimanja: širi kadar terena, krupni plan zaleta i udarca, krupni plan lopte kraj grede, ptičja perspektiva proslave pogotka te završni krupni plan gola.
 
-- Ručno modeliran 3D lik u Blenderu (low-poly pristup)
-- Izrada i dodjela materijala (MTL) liku
-- Rigging / kostur lika za potrebe animacije 
-- Keyframe animacija pokreta udarca (šuta) na penal
-- Kamera i osvjetljenje scene prilagođeni prikazu udarca
-- Render animacije i izvoz gotovog videa
+Cilj projekta bio je kroz cijeli produkcijski proces (modeliranje, materijali, rigging, animacija, montaža, render) primijeniti tehnike računalne grafike obrađene na kolegiju.
 
-## 🛠️ Korišteni alati
 
-- **Blender 5.0.1** – modeliranje, rigging, animacija, render
-- Format izvoza modela: `.obj` / `.mtl`
+---
 
-## 📁 Struktura repozitorija
+## 🚀 Značajke
+
+- Ručno modeliran **3D lik** u Blenderu (low-poly pristup); dres hrvatske nogometne reprezentacije ručno je obojan po plohama, prema pronađenoj referentnoj slici (svaka ploha mreže ima vlastitu boju, bez teksture)
+- **Rigging** lika izrađen pomoću alata Mixamo (auto-rigging); ključne poze noge koja izvodi udarac postavljene su ručno u Blenderu, rotacijom kostiju (interpolacija: Ease)
+- **Dvije zasebne keyframe animacije**: udarac na penal (zalet, zamah, kontakt s loptom) i proslava pogotka (gotova animacija iz Mixamove knjižnice)
+- **Promjena kutova kamere kroz Constant interpolaciju** — kamera "skoči" na sljedeću poziciju bez glatkog prijelaza, čime nastaje efekt reza (cut) bez potrebe za više zasebnih kamera
+- Pozadina scene prikazana i osvijetljena pomoću **HDRI teksture** ("Lilienstein", Poly Haven)
+- Finalni **render** cijele animirane scene (1920×1080, 24 fps)
+
+---
+
+## 📦 Kako koristiti repozitorij
+
+### 1. Kloniranje repozitorija
 
 ```
-├── README.md
-├── blend/
-│   └── projekt.blend        # glavna Blender scena s animacijom
-├── model/
-│   ├── char.obj              # eksportirani model lika
-│   └── char.mtl              # materijali modela
-├── render/                   # (opcionalno) render slike / video isječci
-└── docs/
-    └── seminarski_rad.pdf    # seminarski rad o projektu
+git clone https://github.com/noarakovac/PenalBlender.git
+cd PenalBlender
 ```
 
-## ▶️ Kako otvoriti / pokrenuti projekt
+### 2. Struktura projekta
 
-1. Preuzmite ili klonirajte repozitorij:
-   ```
-   git clone [URL repozitorija]
-   ```
-2. Otvorite datoteku `projekt.blend` u Blenderu 
-3. Za pregled animacije: pritisnite Space u Timeline prozoru ili pokrenite render animacije (`Render > Render Animation`).
-4. Model lika bez animacije možete zasebno pregledati importom `char.obj` u bilo koji 3D alat koji podržava OBJ format.
+Nakon kloniranja, struktura mapa izgleda ovako:
 
-## 🎬 Video animacije
+```
+PenalBlender/
+├── blender_file/         # Glavna Blender (.blend) datoteka s animacijom
+├── model_export/         # Model lika eksportiran kao .obj / .mtl
+├── renders/               # Finalni render (video) i isječci animacije
+├── presentation/          # PowerPoint prezentacija projekta
+├── seminarski_rad/        # Seminarski rad (Word/PDF) o projektu
+├── README.md              # Dokumentacija projekta
+```
 
-📺 YouTube: **(https://www.youtube.com/watch?v=-XYryP_GU8o&t=2s)**
+### 3. Otvaranje i pregled animacije
 
-## ⚠️ Izazovi i rješenja (kratko, detaljno u seminarskom radu)
+- Otvorite `.blend` datoteku iz mape `blender_file/` u Blenderu (5.0.1 ili novije)
+- Za pregled animacije pritisnite razmaknicu (Space) u Timeline/Dope Sheet prozoru
+- Za render pritisnite `Ctrl+F12` (Render Animation) ili `F12` za pojedinačni kadar
 
-- Problem s deformacijom mreže tijekom animacije udarca – riješeno dodatnim weight paintingom
-- Sinkronizacija pokreta noge i lopte – riješeno ključnim točkama (keyframes) usklađenim s fizikom leta lopte
+### 4. Pregled modela bez animacije
 
-## 👤 Autor
+- Model lika (`char.obj` / `char.mtl`) iz mape `model_export/` možete zasebno učitati u bilo koji alat koji podržava OBJ format
 
-- **Noa Rakovac** – 3D računalna grafika, 2025/2026
+### 5. Pregled prezentacije
+
+- Mapa `presentation/` sadrži PowerPoint prezentaciju projekta korištenu za izlaganje
+
+---
+
+## 🛠 Metodologija
+
+- Naučene tehnike Blendera primijenjene kroz praktičnu izradu projekta
+- Modeliranje 3D lika prilagođeno za animaciju (low-poly, jedinstvena mreža)
+- Postavljanje kostura (armature) pomoću alata Mixamo (auto-rigging)
+- Ključne poze noge za udarac postavljene ručno u Blenderu (forward kinematics, interpolacija Ease), uz resetiranje poze prije svake sljedeće
+- Proslava pogotka animirana je primjenom gotove animacije iz Mixamove knjižnice na kostur vlastitog modela
+- Rezovi između kutova kamere postignuti Constant interpolacijom ključnih kadrova kamere
+- Pozadina (nebo/šuma) prikazana i osvijetljena pomoću HDRI teksture
+
+---
+
+## 🔗 Resursi i reference
+
+- 📘 Blender dokumentacija: [docs.blender.org](https://docs.blender.org/)
+- 📹 *Creating Stylized Low Poly Characters in Blender* — YouTube, [youtube.com/watch?v=-XYryP_GU8o](https://www.youtube.com/watch?v=-XYryP_GU8o) (polazište za oblik/geometriju modela lika)
+- 🦴 [Mixamo](https://www.mixamo.com/) (Adobe) — auto-rigging kostura i animacija proslave pogotka
+- 🌄 [Poly Haven — "Lilienstein"](https://polyhaven.com/a/lilienstein) — HDRI tekstura za pozadinu i osvjetljenje
+- 3d računalna grafika – materijali s predavanja i vježbi
+
+---
+
+## 🔮 Moguća poboljšanja
+
+Uz više vremena, projekt bi se mogao unaprijediti kroz:
+
+- Fizikalnu simulaciju lopte (**Rigid Body**) umjesto ručnih keyframeova
+- Detaljniju teksturu lika, trave i stadiona
+- Dodatne kutove kamere i dodatne animacije (npr. reakcija publike)
+
+---
+
+## 📬 Kontakt
+
+Za pitanja ili prijedloge:
+**Noa Rakovac** – student, MiR program (Sveučilište Josipa Jurja Strossmayera in Osijek)
+E-mail: noa.rakovac@gmail.com · Slobodno otvorite issue na repozitoriju.
