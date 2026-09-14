@@ -50,7 +50,7 @@ PenalBlender/
 
 ### 3. Otvaranje i pregled animacije
 
-- Otvorite `.blend` datoteku iz mape `blender_file/` u Blenderu (5.0.1 ili novije)
+- Otvorite `.blend` datoteku iz mape `blender_file/` u Blenderu 
 - Za pregled animacije pritisnite razmaknicu (Space) u Timeline/Dope Sheet prozoru
 - Za render pritisnite `Ctrl+F12` (Render Animation) ili `F12` za pojedinačni kadar
 
